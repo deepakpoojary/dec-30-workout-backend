@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workouts')
 const userRoutes = require('./routes/user')
 const cors = require('cors');
-
+const job = require('./cron');
 // express app
 const app = express()
 app.use(cors());
@@ -33,3 +33,4 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error) => {
     console.log(error)
   })
+  job.start();
